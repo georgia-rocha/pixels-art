@@ -14,7 +14,7 @@ sessao.id = 'color-palette';
 criandoMain.appendChild(sessao);
 
 function criandoPaleta() {
-    let arrayColor = ['red','black','blue','green'];
+    let arrayColor = ['black','red','blue','yellow'];
     for (let index = 0; index < 4; index += 1) {
         const divs = document.createElement('div');
         divs.className = 'color';

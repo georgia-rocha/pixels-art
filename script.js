@@ -1,8 +1,9 @@
 window.onload = function () {
     const corPreta = document.getElementsByClassName('color')[0];
     corPreta.className = 'selected color';
-    
+
 }
+
 const body = document.getElementsByTagName('body')[0];
 function title() {
     const tituloH1 = document.createElement('h1');
@@ -17,6 +18,13 @@ document.body.appendChild(criandoMain);
 const sessao = document.createElement('section');
 sessao.id = 'color-palette';
 criandoMain.appendChild(sessao);
+
+let palette = document.getElementById('color-palette');
+palette.addEventListener('click', function(event) {
+    const escolhendoCor = document.getElementsByClassName('selected')[0];
+    escolhendoCor.classList.remove('selected');
+    event.target.classList.add('selected');
+});
 
 let arrayColor = ['black', 'red', 'blue', 'yellow'];
 function criandoPaleta() {
@@ -69,6 +77,6 @@ function criandoQuadro() {
 
         }
         quadro.appendChild(linha);
-    } 
+    }
 }
 criandoQuadro()

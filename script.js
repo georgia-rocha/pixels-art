@@ -1,6 +1,6 @@
 window.onload = function () {
     const corPreta = document.getElementsByClassName('color')[0];
-    corPreta.className = 'selected color';
+    corPreta.className = 'color selected';
 
 }
 
@@ -12,6 +12,7 @@ function title() {
     document.body.appendChild(tituloH1);
 }
 title()
+
 const criandoMain = document.createElement('main');
 document.body.appendChild(criandoMain);
 
@@ -20,7 +21,7 @@ sessao.id = 'color-palette';
 criandoMain.appendChild(sessao);
 
 let palette = document.getElementById('color-palette');
-palette.addEventListener('click', function(event) {
+palette.addEventListener('click', function (event) {
     const escolhendoCor = document.getElementsByClassName('selected')[0];
     escolhendoCor.classList.remove('selected');
     event.target.classList.add('selected');
@@ -52,21 +53,20 @@ botaoCoresAleatorias.addEventListener('click', function () {
     for (let index = 1; index < cores.length; index += 1) {
         cores[index].style.background = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')';
     }
-})
-
-
+});
 
 const botaoResetColor = document.createElement('button');
 botaoResetColor.id = 'clear-board';
 botaoResetColor.innerHTML = 'Limpar';
 criandoMain.appendChild(botaoResetColor);
 
-botaoResetColor.addEventListener('click', function (event){
-    const pixelsEmBranco = document.getElementsByClassName('pixel');
-    for (let index = 0; index < pixelsEmBranco.length; index += 1){
+const pixelsEmBranco = document.getElementsByClassName('pixel');
+botaoResetColor.addEventListener('click', function (event) {
+    for (let index = 0; index < pixelsEmBranco.length; index += 1) {
         pixelsEmBranco[index].style.background = 'white';
-    }console.log('test');
+    } console.log('test');
 });
+
 
 function criandoQuadro() {
     const quadro = document.createElement('div');
@@ -93,3 +93,13 @@ function criandoQuadro() {
     }
 }
 criandoQuadro()
+
+const corSelecionada = document.getElementsByClassName('color selected');
+console.log(corSelecionada);
+const corPintando = document.querySelector('#pixel-board');
+corPintando.addEventListener('click', function (event) {
+    if(event.target.className === 'pixel') {
+        event.target.style.background = corSelecionada[0].style.background;
+    }
+})
+

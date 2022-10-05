@@ -55,6 +55,19 @@ botaoCoresAleatorias.addEventListener('click', function () {
 })
 
 
+
+const botaoResetColor = document.createElement('button');
+botaoResetColor.id = 'clear-board';
+botaoResetColor.innerHTML = 'Limpar';
+criandoMain.appendChild(botaoResetColor);
+
+botaoResetColor.addEventListener('click', function (event){
+    const pixelsEmBranco = document.getElementsByClassName('pixel');
+    for (let index = 0; index < pixelsEmBranco.length; index += 1){
+        pixelsEmBranco[index].style.background = 'white';
+    }console.log('test');
+});
+
 function criandoQuadro() {
     const quadro = document.createElement('div');
     quadro.id = 'pixel-board';

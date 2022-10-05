@@ -13,8 +13,8 @@ const sessao = document.createElement('section');
 sessao.id = 'color-palette';
 criandoMain.appendChild(sessao);
 
+let arrayColor = ['black','red','blue','yellow'];
 function criandoPaleta() {
-    let arrayColor = ['black','red','blue','yellow'];
     for (let index = 0; index < 4; index += 1) {
         const divs = document.createElement('div');
         divs.className = 'color';
@@ -27,3 +27,15 @@ function criandoPaleta() {
     }
 }
 criandoPaleta()
+
+const botaoCoresAleatorias = document.createElement('button');
+botaoCoresAleatorias.id = 'button-random-color';
+botaoCoresAleatorias.innerHTML = 'Cores aleatórias';
+sessao.appendChild(botaoCoresAleatorias);
+
+botaoCoresAleatorias.addEventListener('click', function(){
+    const cores = document.getElementsByClassName('color');
+    for (let index = 1; index < cores.length; index += 1){
+        cores[index].style.background = 'rgb(' + Math.floor(Math.random() * 255)  + ',' + Math.floor(Math.random() * 255)  + ',' + Math.floor(Math.random() * 255)  + ')';
+    }
+})

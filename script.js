@@ -13,7 +13,7 @@ const sessao = document.createElement('section');
 sessao.id = 'color-palette';
 criandoMain.appendChild(sessao);
 
-let arrayColor = ['black','red','blue','yellow'];
+let arrayColor = ['black', 'red', 'blue', 'yellow'];
 function criandoPaleta() {
     for (let index = 0; index < 4; index += 1) {
         const divs = document.createElement('div');
@@ -33,9 +33,35 @@ botaoCoresAleatorias.id = 'button-random-color';
 botaoCoresAleatorias.innerHTML = 'Cores aleatórias';
 sessao.appendChild(botaoCoresAleatorias);
 
-botaoCoresAleatorias.addEventListener('click', function(){
+botaoCoresAleatorias.addEventListener('click', function () {
     const cores = document.getElementsByClassName('color');
-    for (let index = 1; index < cores.length; index += 1){
-        cores[index].style.background = 'rgb(' + Math.floor(Math.random() * 255)  + ',' + Math.floor(Math.random() * 255)  + ',' + Math.floor(Math.random() * 255)  + ')';
+    for (let index = 1; index < cores.length; index += 1) {
+        cores[index].style.background = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')';
     }
 })
+
+
+function criandoQuadro() {
+    const quadro = document.createElement('div');
+    quadro.id = 'pixel-board';
+    sessao.appendChild(quadro);
+
+    for (let index2 = 0; index2 < 5; index2 += 1) {
+        const linha = document.createElement('div');
+
+        for (let index = 0; index < 5; index += 1) {
+
+            const pixels = document.createElement('div');
+            pixels.className = 'pixel';
+            pixels.style.width = '40px';
+            pixels.style.height = '40px';
+            pixels.style.display = 'inline-block';
+            pixels.style.border = '1px solid black';
+            linha.appendChild(pixels);
+
+
+        }
+        quadro.appendChild(linha);
+    } 
+}
+criandoQuadro()

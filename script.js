@@ -1,3 +1,8 @@
+window.onload = function () {
+    const corPreta = document.getElementsByClassName('color')[0];
+    corPreta.className = 'selected color';
+    
+}
 const body = document.getElementsByTagName('body')[0];
 function title() {
     const tituloH1 = document.createElement('h1');

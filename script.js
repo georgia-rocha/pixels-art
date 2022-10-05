@@ -24,6 +24,7 @@ function criandoPaleta() {
         divs.style.height = '40px';
         divs.style.display = 'inline-block';
         divs.style.border = '1px solid black';
+        divs.style.marginLeft = '10px';
     }
 }
 criandoPaleta()
@@ -44,7 +45,7 @@ botaoCoresAleatorias.addEventListener('click', function () {
 function criandoQuadro() {
     const quadro = document.createElement('div');
     quadro.id = 'pixel-board';
-    sessao.appendChild(quadro);
+    criandoMain.appendChild(quadro);
 
     for (let index2 = 0; index2 < 5; index2 += 1) {
         const linha = document.createElement('div');
@@ -57,6 +58,7 @@ function criandoQuadro() {
             pixels.style.height = '40px';
             pixels.style.display = 'inline-block';
             pixels.style.border = '1px solid black';
+            pixels.style.background = 'white';
             linha.appendChild(pixels);
 
 

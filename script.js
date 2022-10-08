@@ -67,16 +67,22 @@ botaoResetColor.addEventListener('click', function (event) {
     } console.log('test');
 });
 
+let numeroDePixels = 5;
 
 function criandoQuadro() {
     const quadro = document.createElement('div');
     quadro.id = 'pixel-board';
     criandoMain.appendChild(quadro);
 
-    for (let index2 = 0; index2 < 5; index2 += 1) {
+    for (let index2 = 0; index2 < numeroDePixels; index2 += 1) {
         const linha = document.createElement('div');
+        linha.style.margin = '0px';
+        linha.style.height = '40px';
+        linha.style.width = '80%';
+        linha.style.marginLeft = '10%';
+        
 
-        for (let index = 0; index < 5; index += 1) {
+        for (let index = 0; index < numeroDePixels; index += 1) {
 
             const pixels = document.createElement('div');
             pixels.className = 'pixel';
@@ -105,8 +111,9 @@ corPintando.addEventListener('click', function (event) {
     }
 })
 
+const inputPixel1 = document.getElementById('board-size');
+
 function validacaoPixel() {
-    const inputPixel1 = document.getElementById('board-size');
     const invalidPixel1 = inputPixel1.value < 5;
     const invalidPixel2 = inputPixel1.value > 50;
 
@@ -120,11 +127,17 @@ function validacaoPixel() {
     }
 }
 const buttonPx = document.getElementById('generate-board');
-buttonPx.addEventListener('click', validacaoPixel)
+buttonPx.addEventListener('click', alterandoPixels)
 
-/* function alterandoPixels() {
-   const quadro = document.createElement('div');
 
+function alterandoPixels() {
+    validacaoPixel()
+    const quadroInicialPixel = document.getElementById('pixel-board');
+    quadroInicialPixel.remove()
+    numeroDePixels = inputPixel1.value;
     
-} */
+    criandoQuadro()
+
+
+}
 

@@ -85,6 +85,8 @@ function criandoQuadro() {
             pixels.style.display = 'inline-block';
             pixels.style.border = '1px solid black';
             pixels.style.background = 'white';
+            pixels.style.padding = '0px';
+            pixels.style.margin = '0px';
             linha.appendChild(pixels);
 
 
@@ -98,8 +100,31 @@ const corSelecionada = document.getElementsByClassName('color selected');
 console.log(corSelecionada);
 const corPintando = document.querySelector('#pixel-board');
 corPintando.addEventListener('click', function (event) {
-    if(event.target.className === 'pixel') {
+    if (event.target.className === 'pixel') {
         event.target.style.background = corSelecionada[0].style.background;
     }
 })
+
+function validacaoPixel() {
+    const inputPixel1 = document.getElementById('board-size');
+    const invalidPixel1 = inputPixel1.value < 5;
+    const invalidPixel2 = inputPixel1.value > 50;
+
+    if (!inputPixel1.value) {
+        return alert('Board inválido!');
+    }
+    else if (invalidPixel1) {
+        return inputPixel1.value = 5;
+    } else if (invalidPixel2) {
+        return inputPixel1.value = 50;
+    }
+}
+const buttonPx = document.getElementById('generate-board');
+buttonPx.addEventListener('click', validacaoPixel)
+
+/* function alterandoPixels() {
+   const quadro = document.createElement('div');
+
+    
+} */
 

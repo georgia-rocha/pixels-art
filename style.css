@@ -1,3 +1,7 @@
 * {
    text-align: center;
 }
+body {
+    background: url("Minecraft1.jpg");
+    background-size: cover;
+}

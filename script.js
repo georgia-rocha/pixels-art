@@ -20,6 +20,30 @@ const sessao = document.createElement('section');
 sessao.id = 'color-palette';
 criandoMain.appendChild(sessao);
 
+const botaoCoresAleatorias = document.createElement('button');
+botaoCoresAleatorias.id = 'button-random-color';
+botaoCoresAleatorias.innerHTML = 'Cores aleatórias';
+criandoMain.appendChild(botaoCoresAleatorias);
+
+botaoCoresAleatorias.addEventListener('click', function () {
+    const cores = document.getElementsByClassName('color');
+    for (let index = 1; index < cores.length; index += 1) {
+        cores[index].style.background = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')';
+    }
+});
+
+const botaoResetColor = document.createElement('button');
+botaoResetColor.id = 'clear-board';
+botaoResetColor.innerHTML = 'Limpar';
+criandoMain.appendChild(botaoResetColor);
+
+const pixelsEmBranco = document.getElementsByClassName('pixel');
+botaoResetColor.addEventListener('click', function (event) {
+    for (let index = 0; index < pixelsEmBranco.length; index += 1) {
+        pixelsEmBranco[index].style.background = 'white';
+    } console.log('test');
+});
+
 let palette = document.getElementById('color-palette');
 palette.addEventListener('click', function (event) {
     const escolhendoCor = document.getElementsByClassName('selected')[0];
@@ -43,29 +67,18 @@ function criandoPaleta() {
 }
 criandoPaleta()
 
-const botaoCoresAleatorias = document.createElement('button');
-botaoCoresAleatorias.id = 'button-random-color';
-botaoCoresAleatorias.innerHTML = 'Cores aleatórias';
-sessao.appendChild(botaoCoresAleatorias);
+const inputPixel1 = document.createElement('input');
+inputPixel1.type = 'number';
+inputPixel1.min = '1';
+inputPixel1.id = 'board-size';
+inputPixel1.className ='form-control';
 
-botaoCoresAleatorias.addEventListener('click', function () {
-    const cores = document.getElementsByClassName('color');
-    for (let index = 1; index < cores.length; index += 1) {
-        cores[index].style.background = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')';
-    }
-});
+criandoMain.appendChild(inputPixel1);
 
-const botaoResetColor = document.createElement('button');
-botaoResetColor.id = 'clear-board';
-botaoResetColor.innerHTML = 'Limpar';
-criandoMain.appendChild(botaoResetColor);
-
-const pixelsEmBranco = document.getElementsByClassName('pixel');
-botaoResetColor.addEventListener('click', function (event) {
-    for (let index = 0; index < pixelsEmBranco.length; index += 1) {
-        pixelsEmBranco[index].style.background = 'white';
-    } console.log('test');
-});
+const buttonPx = document.createElement('button');
+buttonPx.id = 'generate-board';
+buttonPx.innerText = 'VQV';
+criandoMain.appendChild(buttonPx);
 
 let numeroDePixels = 5;
 
@@ -102,16 +115,17 @@ function criandoQuadro() {
 }
 criandoQuadro()
 
-const corSelecionada = document.getElementsByClassName('color selected');
-console.log(corSelecionada);
-const corPintando = document.querySelector('#pixel-board');
-corPintando.addEventListener('click', function (event) {
-    if (event.target.className === 'pixel') {
-        event.target.style.background = corSelecionada[0].style.background;
-    }
-})
-
-const inputPixel1 = document.getElementById('board-size');
+function pintandoPx() {
+    const corSelecionada = document.getElementsByClassName('color selected');
+    console.log(corSelecionada);
+    const corPintando = document.querySelector('#pixel-board');
+    corPintando.addEventListener('click', function (event) {
+        if (event.target.className === 'pixel') {
+            event.target.style.background = corSelecionada[0].style.background;
+        }
+    })
+    
+}pintandoPx()
 
 function validacaoPixel() {
     const invalidPixel1 = inputPixel1.value < 5;
@@ -126,7 +140,7 @@ function validacaoPixel() {
         return inputPixel1.value = 50;
     }
 }
-const buttonPx = document.getElementById('generate-board');
+/* const buttonPx = document.getElementById('generate-board'); */
 buttonPx.addEventListener('click', alterandoPixels)
 
 
@@ -137,7 +151,8 @@ function alterandoPixels() {
     numeroDePixels = inputPixel1.value;
     
     criandoQuadro()
-
-
+    pintandoPx()
+    
+    
 }
 

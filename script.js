@@ -1,6 +1,5 @@
 window.onload = function () {
-  const corPreta = document.getElementsByClassName('color')[0];
-  corPreta.className = 'color selected';
+  
 }
 
 function title() {
@@ -14,7 +13,9 @@ title()
 const criandoMain = document.createElement('main');
 document.body.appendChild(criandoMain);
 
-const sessao = document.createElement('section');
+const cores = document.getElementsByClassName('color');
+
+let sessao = document.createElement('section');
 sessao.id = 'color-palette';
 criandoMain.appendChild(sessao);
 
@@ -24,10 +25,10 @@ botaoCoresAleatorias.innerHTML = 'Cores aleatórias';
 criandoMain.appendChild(botaoCoresAleatorias);
 
 botaoCoresAleatorias.addEventListener('click', function () {
-  const cores = document.getElementsByClassName('color');
   for (let index = 1; index < cores.length; index += 1) {
     cores[index].style.background = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')';
   }
+  localStorage.setItem('colorPalette', JSON.stringify(sessao.innerHTML));
 });
 
 const botaoResetColor = document.createElement('button');
@@ -62,8 +63,15 @@ function criandoPaleta() {
     divs.style.border = '1px solid black';
     divs.style.marginLeft = '10px';
   }
+  const corPreta = document.getElementsByClassName('color')[0];
+  corPreta.className = 'color selected';
 }
 criandoPaleta()
+
+const sessaoLocalStorage = JSON.parse(localStorage.getItem('colorPalette'));
+if (sessaoLocalStorage){
+  sessao.innerHTML = sessaoLocalStorage;
+}
 
 const inputPixel1 = document.createElement('input');
 inputPixel1.type = 'number';
@@ -115,7 +123,6 @@ criandoQuadro()
 
 function pintandoPx() {
   const corSelecionada = document.getElementsByClassName('color selected');
-  console.log(corSelecionada);
   const corPintando = document.querySelector('#pixel-board');
   corPintando.addEventListener('click', function (event) {
     if (event.target.className === 'pixel') {
@@ -138,19 +145,16 @@ function validacaoPixel() {
     return inputPixel1.value = 50;
   }
 }
-/* const buttonPx = document.getElementById('generate-board'); */
-buttonPx.addEventListener('click', alterandoPixels)
 
+buttonPx.addEventListener('click', alterandoPixels);
 
 function alterandoPixels() {
-  validacaoPixel()
+  validacaoPixel();
   const quadroInicialPixel = document.getElementById('pixel-board');
-  quadroInicialPixel.remove()
+  quadroInicialPixel.remove();
   numeroDePixels = inputPixel1.value;
 
-  criandoQuadro()
-  pintandoPx()
-
+  criandoQuadro();
+  pintandoPx();
 
 }
-

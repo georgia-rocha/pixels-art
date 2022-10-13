@@ -5,3 +5,11 @@ body {
     background: url("Minecraft1.jpg");
     background-size: cover;
 }
+
+#title {
+    background: url("Pixels-arts.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: '30%';
+    display: inline;
+}

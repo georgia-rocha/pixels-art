@@ -1,9 +1,18 @@
 * {
+    padding: 0;
+    margin: 0;
    text-align: center;
 }
 body {
     background: url("Minecraft1.jpg");
     background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+main {
+    height: 100vh;
 }
 
 #title {
@@ -12,4 +21,11 @@ body {
     background-size: contain;
     width: '30%';
     display: inline;
+}
+#pixel-board {
+    margin-top: 9% ;
+}
+
+.footer {
+    justify-items: flex-end;
 }

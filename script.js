@@ -86,7 +86,14 @@ buttonPx.id = 'generate-board';
 buttonPx.innerText = 'VQV';
 criandoMain.appendChild(buttonPx);
 
-let numeroDePixels = 5;
+let numeroDePixels;
+
+const tamanhoLocalStorage = localStorage.getItem('boardSize');
+if (tamanhoLocalStorage){
+  numeroDePixels = tamanhoLocalStorage;
+} else {
+  numeroDePixels = 5;
+}
 
 function criandoQuadro() {
   const quadro = document.createElement('div');
@@ -121,16 +128,22 @@ function criandoQuadro() {
 }
 criandoQuadro()
 
+const corPintando = document.querySelector('#pixel-board');
 function pintandoPx() {
   const corSelecionada = document.getElementsByClassName('color selected');
-  const corPintando = document.querySelector('#pixel-board');
   corPintando.addEventListener('click', function (event) {
     if (event.target.className === 'pixel') {
       event.target.style.background = corSelecionada[0].style.background;
+      localStorage.setItem('drawPixels', JSON.stringify(corPintando.innerHTML));
     }
   })
-
+ 
 } pintandoPx()
+
+const drawLocalStorage = JSON.parse(localStorage.getItem('drawPixels'));
+if (drawLocalStorage){
+  corPintando.innerHTML = drawLocalStorage;
+}
 
 function validacaoPixel() {
   const invalidPixel1 = inputPixel1.value < 5;
@@ -154,7 +167,18 @@ function alterandoPixels() {
   quadroInicialPixel.remove();
   numeroDePixels = inputPixel1.value;
 
+localStorage.setItem('boardSize', numeroDePixels);
   criandoQuadro();
   pintandoPx();
-
 }
+
+const footer = document.createElement('footer');
+footer.className = 'footer';
+document.body.appendChild(footer);
+
+const paragrafoFooter = document.createElement('p');
+paragrafoFooter.id = 'p-footer';
+paragrafoFooter.innerText = 'Projeto Pixels Artes - TRYBE by Georgia Rocha T27B';
+paragrafoFooter.style.background = '#001c05';
+paragrafoFooter.style.color = 'white';
+footer.appendChild(paragrafoFooter);

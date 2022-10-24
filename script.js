@@ -134,13 +134,13 @@ function pintandoPx() {
   corPintando.addEventListener('click', function (event) {
     if (event.target.className === 'pixel') {
       event.target.style.background = corSelecionada[0].style.background;
-      localStorage.setItem('drawPixels', JSON.stringify(corPintando.innerHTML));
+      localStorage.setItem('pixelBoard', JSON.stringify(corPintando.innerHTML));
     }
   })
  
 } pintandoPx()
 
-const drawLocalStorage = JSON.parse(localStorage.getItem('drawPixels'));
+const drawLocalStorage = JSON.parse(localStorage.getItem('pixelBoard'));
 if (drawLocalStorage){
   corPintando.innerHTML = drawLocalStorage;
 }

@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Pixels Arts</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto Pixels Arts</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
-   <h1 id="title">Paleta de Cores</h1>
-   <section>
+  <img src="Pixels-arts.png" alt="title">
+  <h1 id="title">Paleta de Cores</h1>
+  <section>
     <ul id="color-palette"></ul>
-   </section>
-   <button id="button-random-color">Cores aleatórias</button>
-   <div>
+  </section>
+  <button id="button-random-color">Cores aleatórias</button>
+  <div id="button-container">
     <input type="number" max="50" min="1" id="board-size">
     <button id="generate-board">VQV</button>
-   </div>
-   <button id="clear-board">Limpar</button>
-   <table id="pixel-board"></table>
- <script src="script.js"></script>
+    <button id="clear-board">Limpar</button>
+  </div>
+  <div id="table">
+    <table id="pixel-board"></table>
+  </div>
+  <script src="script.js"></script>
 </body>
+
 </html>

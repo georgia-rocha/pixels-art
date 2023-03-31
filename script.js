@@ -110,6 +110,7 @@ function pintandoQuadro() {
   const corSelecionada = document.getElementsByClassName('color selected');
   quadro.addEventListener('click', ({ target }) => {
     if (target.className === 'pixel') {
+      // eslint-disable-next-line no-param-reassign
       target.style.backgroundColor = corSelecionada[0].style.backgroundColor;
       localStorage.setItem('pixelBoard', JSON.stringify(quadro.innerHTML));
     }

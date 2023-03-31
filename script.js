@@ -1,184 +1,133 @@
-window.onload = function () {
-  
+window.onload = function initial() {
+  const paletteInitalColor = document.getElementsByTagName('li')[0];
+  paletteInitalColor.className = 'color selected';
+};
+
+const palette = document.getElementById('color-palette');
+const quadro = document.getElementById('pixel-board');
+const buttonResetColor = document.getElementById('clear-board');
+const buttonColorAleatorias = document.getElementById('button-random-color');
+const pixel = document.getElementsByClassName('pixel');
+const buttonNewQuadro = document.getElementById('generate-board');
+const inputPixels = document.getElementById('board-size');
+let numberPixels = 5;
+
+// Criando paleta de cores que irão ser usadas para pintar o quadro
+
+function criandoPaleta() {
+  const colors = ['black', 'red', 'green', 'blue'];
+  colors.forEach((color) => {
+    const colorLi = document.createElement('li');
+    colorLi.className = 'color';
+    palette.appendChild(colorLi);
+    colorLi.style.backgroundColor = color;
+  });
 }
+criandoPaleta();
 
-function title() {
-  const tituloH1 = document.createElement('h1');
-  tituloH1.innerHTML = 'Paleta de Cores';
-  tituloH1.id = 'title';
-  document.body.appendChild(tituloH1);
-}
-title()
+// Add evento de click para trocar cores da paleta, porém a primeira cor deve permanecer com background 'black' e a paleta deve ser salva no LocalStorage
 
-const criandoMain = document.createElement('main');
-document.body.appendChild(criandoMain);
-
-const cores = document.getElementsByClassName('color');
-
-let sessao = document.createElement('section');
-sessao.id = 'color-palette';
-criandoMain.appendChild(sessao);
-
-const botaoCoresAleatorias = document.createElement('button');
-botaoCoresAleatorias.id = 'button-random-color';
-botaoCoresAleatorias.innerHTML = 'Cores aleatórias';
-criandoMain.appendChild(botaoCoresAleatorias);
-
-botaoCoresAleatorias.addEventListener('click', function () {
+buttonColorAleatorias.addEventListener('click', () => {
+  const cores = document.getElementsByClassName('color');
   for (let index = 1; index < cores.length; index += 1) {
-    cores[index].style.background = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')';
+    cores[index].style.backgroundColor = `rgb(${Math
+      .floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math
+      .floor(Math.random() * 255)})`;
   }
-  localStorage.setItem('colorPalette', JSON.stringify(sessao.innerHTML));
+  localStorage.setItem('colorPalette', JSON.stringify(palette.innerHTML));
 });
 
-const botaoResetColor = document.createElement('button');
-botaoResetColor.id = 'clear-board';
-botaoResetColor.innerHTML = 'Limpar';
-criandoMain.appendChild(botaoResetColor);
+// buscando cores salvas da paleta do LocalStorage
 
-const pixelsEmBranco = document.getElementsByClassName('pixel');
-botaoResetColor.addEventListener('click', function (event) {
-  for (let index = 0; index < pixelsEmBranco.length; index += 1) {
-    pixelsEmBranco[index].style.background = 'white';
-  } console.log('test');
-});
+const getLocalStorage = JSON.parse(localStorage.getItem('colorPalette'));
+if (getLocalStorage) {
+  palette.innerHTML = getLocalStorage;
+}
 
-let palette = document.getElementById('color-palette');
-palette.addEventListener('click', function (event) {
+// pegando tamanho de pixels salvo no localStorage
+
+const getNumberPixels = localStorage.getItem('boardSize');
+if (getNumberPixels) {
+  numberPixels = getNumberPixels;
+} else {
+  numberPixels = 5;
+}
+
+// Criando quadro de pixels para ser pintado
+
+function criandoQuadro() {
+  for (let index = 0; index < numberPixels; index += 1) {
+    const linha = document.createElement('tr');
+    for (let i = 0; i < numberPixels; i += 1) {
+      const coluna = document.createElement('td');
+      coluna.className = 'pixel';
+      linha.appendChild(coluna);
+    }
+    quadro.appendChild(linha);
+  }
+}
+criandoQuadro();
+
+// Add validação do valor do input para alteração de tamanho do quadro
+
+function validation() {
+  const invalidPixel1 = inputPixels.value < 5;
+  const invalidPixel2 = inputPixels.value > 50;
+
+  if (!inputPixels.value) {
+    return alert('Board inválido!');
+  }
+  if (invalidPixel1) {
+    inputPixels.value = 5;
+  } if (invalidPixel2) {
+    inputPixels.value = 50;
+  }
+}
+
+// Atualiza o quadro de acordo com o valor passado pelo input 'board-size
+
+function updateQuadro() {
+  validation();
+  quadro.innerHTML = '';
+  numberPixels = inputPixels.value;
+  localStorage.setItem('boardSize', numberPixels);
+  criandoQuadro();
+}
+
+buttonNewQuadro.addEventListener('click', updateQuadro);
+
+// Add evento de click para trocar a cor selecionada da tabela
+
+palette.addEventListener('click', (event) => {
   const escolhendoCor = document.getElementsByClassName('selected')[0];
   escolhendoCor.classList.remove('selected');
   event.target.classList.add('selected');
 });
 
-let arrayColor = ['black', 'red', 'blue', 'yellow'];
-function criandoPaleta() {
-  for (let index = 0; index < 4; index += 1) {
-    const divs = document.createElement('div');
-    divs.className = 'color';
-    sessao.appendChild(divs);
-    divs.style.background = arrayColor[index];
-    divs.style.width = '40px';
-    divs.style.height = '40px';
-    divs.style.display = 'inline-block';
-    divs.style.border = '1px solid black';
-    divs.style.marginLeft = '10px';
-  }
-  const corPreta = document.getElementsByClassName('color')[0];
-  corPreta.className = 'color selected';
-}
-criandoPaleta()
+// Função para pintar o quadro com a cor selecionada da paleta e criando chave no localStorage para guardar o desenho
 
-const sessaoLocalStorage = JSON.parse(localStorage.getItem('colorPalette'));
-if (sessaoLocalStorage){
-  sessao.innerHTML = sessaoLocalStorage;
-}
-
-const inputPixel1 = document.createElement('input');
-inputPixel1.type = 'number';
-inputPixel1.min = '1';
-inputPixel1.id = 'board-size';
-inputPixel1.className = 'form-control';
-
-criandoMain.appendChild(inputPixel1);
-
-const buttonPx = document.createElement('button');
-buttonPx.id = 'generate-board';
-buttonPx.innerText = 'VQV';
-criandoMain.appendChild(buttonPx);
-
-let numeroDePixels;
-
-const tamanhoLocalStorage = localStorage.getItem('boardSize');
-if (tamanhoLocalStorage){
-  numeroDePixels = tamanhoLocalStorage;
-} else {
-  numeroDePixels = 5;
-}
-
-function criandoQuadro() {
-  const quadro = document.createElement('div');
-  quadro.id = 'pixel-board';
-  criandoMain.appendChild(quadro);
-
-  for (let index2 = 0; index2 < numeroDePixels; index2 += 1) {
-    const linha = document.createElement('div');
-    linha.style.margin = '0px';
-    linha.style.height = '40px';
-    linha.style.width = '80%';
-    linha.style.marginLeft = '10%';
-
-
-    for (let index = 0; index < numeroDePixels; index += 1) {
-
-      const pixels = document.createElement('div');
-      pixels.className = 'pixel';
-      pixels.style.width = '40px';
-      pixels.style.height = '40px';
-      pixels.style.display = 'inline-block';
-      pixels.style.border = '1px solid black';
-      pixels.style.background = 'white';
-      pixels.style.padding = '0px';
-      pixels.style.margin = '0px';
-      linha.appendChild(pixels);
-
-
-    }
-    quadro.appendChild(linha);
-  }
-}
-criandoQuadro()
-
-const corPintando = document.querySelector('#pixel-board');
-function pintandoPx() {
+function pintandoQuadro() {
   const corSelecionada = document.getElementsByClassName('color selected');
-  corPintando.addEventListener('click', function (event) {
-    if (event.target.className === 'pixel') {
-      event.target.style.background = corSelecionada[0].style.background;
-      localStorage.setItem('pixelBoard', JSON.stringify(corPintando.innerHTML));
+  quadro.addEventListener('click', ({ target }) => {
+    if (target.className === 'pixel') {
+      target.style.backgroundColor = corSelecionada[0].style.backgroundColor;
+      localStorage.setItem('pixelBoard', JSON.stringify(quadro.innerHTML));
     }
-  })
- 
-} pintandoPx()
+  });
+}
+pintandoQuadro();
 
-const drawLocalStorage = JSON.parse(localStorage.getItem('pixelBoard'));
-if (drawLocalStorage){
-  corPintando.innerHTML = drawLocalStorage;
+// Recuperando desenho do LocalStorage
+
+const getDesing = JSON.parse(localStorage.getItem('pixelBoard'));
+if (getDesing) {
+  quadro.innerHTML = getDesing;
 }
 
-function validacaoPixel() {
-  const invalidPixel1 = inputPixel1.value < 5;
-  const invalidPixel2 = inputPixel1.value > 50;
+// Add evento de click no botão Limpar, para resetar a cor padrão dos pixels
 
-  if (!inputPixel1.value) {
-    return alert('Board inválido!');
+buttonResetColor.addEventListener('click', () => {
+  for (let i = 0; i < pixel.length; i += 1) {
+    pixel[i].style.backgroundColor = 'white';
   }
-  else if (invalidPixel1) {
-    return inputPixel1.value = 5;
-  } else if (invalidPixel2) {
-    return inputPixel1.value = 50;
-  }
-}
-
-buttonPx.addEventListener('click', alterandoPixels);
-
-function alterandoPixels() {
-  validacaoPixel();
-  const quadroInicialPixel = document.getElementById('pixel-board');
-  quadroInicialPixel.remove();
-  numeroDePixels = inputPixel1.value;
-
-localStorage.setItem('boardSize', numeroDePixels);
-  criandoQuadro();
-  pintandoPx();
-}
-
-const footer = document.createElement('footer');
-footer.className = 'footer';
-document.body.appendChild(footer);
-
-const paragrafoFooter = document.createElement('p');
-paragrafoFooter.id = 'p-footer';
-paragrafoFooter.innerText = 'Projeto Pixels Artes - TRYBE by Georgia Rocha T27B';
-paragrafoFooter.style.background = '#001c05';
-paragrafoFooter.style.color = 'white';
-footer.appendChild(paragrafoFooter);
+});

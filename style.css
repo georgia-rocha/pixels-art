@@ -1,31 +1,50 @@
 * {
-    padding: 0;
-    margin: 0;
-   text-align: center;
-}
-body {
-    background: url("Minecraft1.jpg");
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-main {
-    height: 100vh;
+  padding: 0;
+  margin: 0;
+  text-align: center;
 }
 
-#title {
-    background: url("Pixels-arts.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: '30%';
-    display: inline;
+body {
+  background: url("Minecraft1.jpg");
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-#pixel-board {
-    margin-top: 9% ;
+
+
+#title {
+  background: url("Pixels-arts.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: '30%';
+  display: inline;
+}
+
+.color-palette {
+  display: inline-block;
+}
+
+li {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+}
+
+.color {
+  border: 1px solid black;
+}
+
+.pixel {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  background-color: white;
+
 }
 
 .footer {
-    justify-items: flex-end;
+  justify-items: flex-end;
 }

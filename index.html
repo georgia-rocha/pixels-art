@@ -8,10 +8,17 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-   <!--  <div class="input-group">
-        <input type="text" id="board-size" class="form-control" min="0" max="50">
-        <button type="button" id="generate-board">VQV</button>
-      </div> -->
+   <h1 id="title">Paleta de Cores</h1>
+   <section>
+    <ul id="color-palette"></ul>
+   </section>
+   <button id="button-random-color">Cores aleatórias</button>
+   <div>
+    <input type="number" max="50" min="1" id="board-size">
+    <button id="generate-board">VQV</button>
+   </div>
+   <button id="clear-board">Limpar</button>
+   <table id="pixel-board"></table>
  <script src="script.js"></script>
 </body>
 </html>

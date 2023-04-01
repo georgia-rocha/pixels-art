@@ -2,7 +2,7 @@
 <summary><strong>Para clonar e testar</strong></summary><br />
 
 1. Clone o repositório
-* `git clone git@github.com:georgia-rocha/solar-system.git`
+* `git clone git@github.com:georgia-rocha/pixelsArt.git`
 * Entre na pasta do repositório que você acabou de clonar:
 
 2. Instale as dependências:

@@ -2,7 +2,7 @@
 <summary><strong>Para clonar e testar</strong></summary><br />
 
 1. Clone o repositório
-* `git clone git@github.com:georgia-rocha/solar-system.git`
+* `git clone git@github.com:georgia-rocha/pixels-art.git`
 * Entre na pasta do repositório que você acabou de clonar:
 
 2. Instale as dependências:
@@ -10,6 +10,9 @@
 
 3. Iniciar a aplicação:
 * Abrir Live Server
+
+4. Testar Aplicação
+* npm run cypress:open
 
 ## Objetivo
 

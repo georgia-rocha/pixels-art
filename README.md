@@ -12,6 +12,7 @@
 * `Abrir Live Server`
 
 4. Testar Aplicação
+** Testes feitos pela Trybe para critério de avaliação
 * `npm run cypress:open`
 
 ## Objetivo

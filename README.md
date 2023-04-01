@@ -9,17 +9,18 @@
 * `npm install`
 
 3. Iniciar a aplicação:
-* Abrir Live Server
+* `Abrir Live Server`
 
 4. Testar Aplicação
-* npm run cypress:open
+* `npm run cypress:open`
 
 ## Objetivo
 
 * Este projeto teve o intuito de desenvolver um editor de arte em pixels, onde a pessoa usuária pode escolher uma cor na paleta de cores e pintar o quadro em branco, o usuário também pode alterar o tamanho do quadro, alterar as cores da paleta e caso a pagina seja recarregada o desenho e o tamanho do quadro são salvos através do LocalStorage.
 
 O que foi praticado:
-    * JavaScript: DOM, Eventos, Web Storage, Array e loop For, Funções;
+
+* JavaScript: DOM, Eventos, Web Storage, Array e loop For, Funções;
   
 ## Requisitos Obrigatórios 100%
 

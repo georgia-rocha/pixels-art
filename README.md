@@ -1,4 +1,5 @@
 ![img](pixelsArt.gif)
+[Link deploy](https://georgia-rocha.github.io/pixels-art/)
 <summary><strong>Para clonar e testar</strong></summary><br />
 
 1. Clone o repositório

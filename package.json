@@ -15,7 +15,6 @@
     "stylelint": "13.8.0",
     "stylelint-config-standard": "20.0.0"
   },
-  "homepage": "https://username.github.io/pixel-art",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
